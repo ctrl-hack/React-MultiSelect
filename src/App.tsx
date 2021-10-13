@@ -8,7 +8,7 @@ const options = [
   { value: 2, label: "Baku" },
   { value: 3, label: "Ganja" },
   { value: 4, label: "Shusha" },
-  { value: 5, label: "Agdam" }
+  { value: 5, label: "Agdam" },
 ];
 
 export default function ReactMultiSelect() {
@@ -26,6 +26,7 @@ export default function ReactMultiSelect() {
         onChange={handleChange}
         value={optionSelected}
         isSelectAll={true}
+        menuPlacement={"bottom"}
       />
     </div>
   );
