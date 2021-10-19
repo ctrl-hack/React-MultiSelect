@@ -5,6 +5,7 @@ export interface IOption {
   value: number | string;
   label: string;
 }
+
 const MultiSelect = (props: any) => {
   const [selectInput, setSelectInput] = useState<string>("");
   const isAllSelected = useRef<boolean>(false);
@@ -93,7 +94,7 @@ const MultiSelect = (props: any) => {
           ...props.options.filter(
             ({ label }: IOption) =>
               label.toLowerCase().includes(selectInput?.toLowerCase()) &&
-              props.value?.filter((opt: IOption) => opt.label === label)
+              (props.value ?? []).filter((opt: IOption) => opt.label === label)
                 .length === 0
           )
         ].sort(comparator)
