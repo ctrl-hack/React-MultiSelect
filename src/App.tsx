@@ -18,8 +18,10 @@ export default function ReactMultiSelect() {
   };
 
   return (
-    <div>
-      <h1> MultiSelect example </h1>
+    <div className="App">
+      <h1>
+        {"\u2728"} MultiSelect example {"\u2728"}
+      </h1>
       <MultiSelect
         key="example_id"
         options={options}
