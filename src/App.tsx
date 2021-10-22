@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import MultiSelect, { IOption } from "./MultiSelect";
+import "./styles.css";
 
 const options = [
   { value: 0, label: "Goranboy" },
