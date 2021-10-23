@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
-import MultiSelect, { IOption } from "./MultiSelect";
+import MultiSelect, { Option } from "./MultiSelect";
 import "./styles.css";
 
 const options = [
@@ -13,8 +13,8 @@ const options = [
 ];
 
 export default function ReactMultiSelect() {
-  const [optionSelected, setSelected] = useState<IOption[] | null>();
-  const handleChange = (selected: IOption[]) => {
+  const [optionSelected, setSelected] = useState<Option[] | null>();
+  const handleChange = (selected: Option[]) => {
     setSelected(selected);
   };
 

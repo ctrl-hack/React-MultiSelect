@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { default as ReactSelect, components, InputAction } from "react-select";
 
-export interface IOption {
+export type Option = {
   value: number | string;
   label: string;
-}
+};
 
 const MultiSelect = (props: any) => {
   const [selectInput, setSelectInput] = useState<string>("");
@@ -12,12 +12,12 @@ const MultiSelect = (props: any) => {
   const selectAllLabel = useRef<string>("Select all");
   const allOption = { value: "*", label: selectAllLabel.current };
 
-  const filterOptions = (options: IOption[], input: string) =>
-    options?.filter(({ label }: IOption) =>
+  const filterOptions = (options: Option[], input: string) =>
+    options?.filter(({ label }: Option) =>
       label.toLowerCase().includes(input.toLowerCase())
     );
 
-  const comparator = (v1: IOption, v2: IOption) =>
+  const comparator = (v1: Option, v2: Option) =>
     (v1.value as number) - (v2.value as number);
 
   let filteredOptions = filterOptions(props.options, selectInput);
@@ -63,7 +63,7 @@ const MultiSelect = (props: any) => {
     </>
   );
 
-  const customFilterOption = ({ value, label }: IOption, input: string) =>
+  const customFilterOption = ({ value, label }: Option, input: string) =>
     (value !== "*" && label.toLowerCase().includes(input.toLowerCase())) ||
     (value === "*" && filteredOptions?.length > 0);
 
@@ -80,7 +80,7 @@ const MultiSelect = (props: any) => {
     if (e.key === " " && !selectInput) e.preventDefault();
   };
 
-  const handleChange = (selected: IOption[]) => {
+  const handleChange = (selected: Option[]) => {
     if (
       selected.length > 0 &&
       !isAllSelected.current &&
@@ -92,11 +92,11 @@ const MultiSelect = (props: any) => {
         [
           ...(props.value ?? []),
           ...props.options.filter(
-            ({ label }: IOption) =>
+            ({ label }: Option) =>
               label.toLowerCase().includes(selectInput?.toLowerCase()) &&
-              (props.value ?? []).filter((opt: IOption) => opt.label === label)
+              (props.value ?? []).filter((opt: Option) => opt.label === label)
                 .length === 0
-          )
+          ),
         ].sort(comparator)
       );
     else if (
@@ -109,25 +109,25 @@ const MultiSelect = (props: any) => {
     else
       return props.onChange([
         ...props.value?.filter(
-          ({ label }: IOption) =>
+          ({ label }: Option) =>
             !label.toLowerCase().includes(selectInput?.toLowerCase())
-        )
+        ),
       ]);
   };
 
   const customStyles = {
     multiValueLabel: (def: any) => ({
       ...def,
-      backgroundColor: "lightgray"
+      backgroundColor: "lightgray",
     }),
     multiValueRemove: (def: any) => ({
       ...def,
-      backgroundColor: "lightgray"
+      backgroundColor: "lightgray",
     }),
     valueContainer: (base: any) => ({
       ...base,
       maxHeight: "65px",
-      overflow: "auto"
+      overflow: "auto",
     }),
     option: (styles: any, { isSelected, isFocused }: any) => {
       return {
@@ -140,10 +140,10 @@ const MultiSelect = (props: any) => {
             : isFocused && isSelected
             ? "#DEEBFF"
             : null,
-        color: isSelected ? null : null
+        color: isSelected ? null : null,
       };
     },
-    menu: (def: any) => ({ ...def, zIndex: 9999 })
+    menu: (def: any) => ({ ...def, zIndex: 9999 }),
   };
 
   if (props.isSelectAll && props.options.length !== 0) {
@@ -171,7 +171,7 @@ const MultiSelect = (props: any) => {
         components={{
           Option: Option,
           Input: Input,
-          ...props.components
+          ...props.components,
         }}
         filterOption={customFilterOption}
         menuPlacement={props.menuPlacement ?? "auto"}
@@ -193,7 +193,7 @@ const MultiSelect = (props: any) => {
       filterOption={customFilterOption}
       components={{
         Input: Input,
-        ...props.components
+        ...props.components,
       }}
       menuPlacement={props.menuPlacement ?? "auto"}
       onKeyDown={onKeyDown}
