@@ -181,6 +181,7 @@ const MultiSelect = (props: any) => {
         tabSelectsValue={false}
         backspaceRemovesValue={false}
         hideSelectedOptions={false}
+        blurInputOnSelect={false}
       />
     );
   }
