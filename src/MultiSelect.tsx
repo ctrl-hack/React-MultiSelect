@@ -77,7 +77,8 @@ const MultiSelect = (props: any) => {
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-    if (e.key === " " && !selectInput) e.preventDefault();
+    if ((e.key === " " || e.key === "Enter") && !selectInput)
+      e.preventDefault();
   };
 
   const handleChange = (selected: Option[]) => {
