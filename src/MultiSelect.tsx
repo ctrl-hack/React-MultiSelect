@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { default as ReactSelect, components, InputAction } from "react-select";
 
 export type Option = {
