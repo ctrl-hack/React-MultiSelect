@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import { useState, useRef } from "react";
 import { default as ReactSelect, components, InputAction } from "react-select";
 
 export type Option = {
@@ -20,14 +20,8 @@ const MultiSelect = (props: any) => {
   const comparator = (v1: Option, v2: Option) =>
     (v1.value as number) - (v2.value as number);
 
-  let filteredOptions = useMemo(
-    () => filterOptions(props.options, selectInput),
-    [props.options, selectInput]
-  );
-  let filteredSelectedOptions = useMemo(
-    () => filterOptions(props.value, selectInput),
-    [props.value, selectInput]
-  );
+  let filteredOptions = filterOptions(props.options, selectInput);
+  let filteredSelectedOptions = filterOptions(props.value, selectInput);
 
   const Option = (props: any) => (
     <components.Option {...props}>
